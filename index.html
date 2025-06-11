@@ -1,0 +1,199 @@
+
+<html>
+<head>
+	<title>SkillSet Form</title>
+<style>
+body {
+    font-family: "Cambria";
+    background: linear-gradient(to right, #e1bee7, #f8bbd0);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+form {
+    background-color: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #6a1b9a;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #7b1fa2;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 8px;
+    border: 2px solid #ce93d8;
+    border-radius: 10px;
+    background-color: #f3e5f5;
+}
+
+.radio-group, .checkbox-group {
+    margin-top: 10px;
+}
+
+.radio-group label,
+.checkbox-group label {
+    margin-right: 15px;
+    font-size: 15px;
+    color: #4a148c;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 6px;
+    accent-color: #ab47bc;
+}
+
+input[type="submit"] {
+    margin-top: 30px;
+    background-color: #ba68c8;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #8e24aa;
+}
+
+#msg {
+    margin-top: 25px;
+    padding: 15px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #4a148c;
+    background-color: #f3e5f5;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(186, 104, 200, 0.3);
+}
+
+</style>
+</head>
+<body>
+
+	<form onsubmit="show()">
+	<h1>SKILLSET FORM</h1>
+
+		<label>Enter Name</label>
+		<input type="text" id="name" placeholder="Your name here" />	
+
+		<label>Select Gender</label>
+		<div class="radio-group">
+			<label><input type="radio" name="gender" id="male" value="Male"  checked />Male</label>
+			<label><input type="radio" name="gender" id="female" value="Female" />Female</label>
+		</div>
+	
+		<label>Select Skills</label>
+		<div class="checkbox-group">
+			<label><input type="checkbox" id="html" value="HTML" />HTML</label>
+			<label><input type="checkbox" id="css" value="CSS" />CSS</label>
+			<label><input type="checkbox" id="js" value="JavaScript" />JavaScript</label>
+			<label><input type="checkbox" id="py" value="Python" />Python</label>
+			<label><input type="checkbox" id="jv" value="Java" />Java</label>
+			<label><input type="checkbox" id="sql" value="SQL" />SQL</label>
+		</div>
+
+		<input type="submit" value="SUBMIT" />
+		<h2 id="msg"></h2>
+
+	</form>
+
+	<script>
+		function show() {
+			event.preventDefault();
+			
+				
+			let name=document.getElementById("name");
+			let male=document.getElementById("male");
+			let female=document.getElementById("female");
+			let html=document.getElementById("html");
+			let css=document.getElementById("css");
+			let js=document.getElementById("js");
+			let py=document.getElementById("py");
+			let jv=document.getElementById("jv");
+			let sql=document.getElementById("sql");
+			let msg=document.getElementById("msg");
+
+			if (name.value === "")
+			{
+				alert("name should now be empty");
+				msg.innerHTML="";
+				name.focus();
+				return;
+			}
+
+			if (name.value.trim() === "")			
+			{
+				alert("name cannot be blank spaces");
+				msg.innerHTML="";
+				name.value="";
+				name.focus();
+				return;
+			}
+
+		if (! name.value.match(/^[A-Za-z ]+$/))
+		{
+			alert("name should contain only alphabets");
+			msg.innerHTML="";
+			name.focus();	
+			name.value="";
+			return;
+		}
+
+		let gender="";
+		if (male.checked)		gender="Male";
+		else					gender="Female";
+
+		let skills="";
+		if (html.checked)	
+			skills=skills+" HTML ";
+		if (css.checked)
+			skills=skills+ " CSS "; 
+		if (js.checked)
+			skills=skills+ " JavaScript "; 
+		if (py.checked)
+			skills=skills+ " Python "; 
+		if (jv.checked)
+			skills=skills+ " Java "; 
+		if (sql.checked)
+			skills=skills+ " SQL "; 
+		
+		if (skills=="")
+			skills="No Skills";
+
+
+		let ans=" Name: " +name.value+ " Gender: " +gender+ " Skills: "+skills;
+		msg.innerHTML=ans;
+
+		}
+	</script>
+</body>
+</html>
